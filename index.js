@@ -9,7 +9,11 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
+  const metaImage = req.query.imageurl;
   const filePath = path.resolve("./index.html");
+  if (metaImage) {
+    filePath.replace("@META_IMAGE", metaImage);
+  }
   res.sendFile(filePath);
 });
 
