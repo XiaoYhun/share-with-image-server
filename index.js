@@ -1,6 +1,6 @@
 // index.js
 const express = require("express");
-
+const path = require("path");
 const app = express();
 const PORT = 4000;
 
@@ -9,7 +9,8 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hey this is my API running 🥳");
+  const filePath = path.resolve("./index.html");
+  res.sendFile(filePath);
 });
 
 app.get("/about", (req, res) => {
