@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   }
   res.sendFile(filePath);
   if (redirectUrl) {
-    res.redirect(200, redirectUrl);
+    res.redirect("https://kyberswap.com/");
   }
 });
 
