@@ -17,12 +17,8 @@ app.get("/", (req, res) => {
   }
   res.sendFile(filePath);
   if (redirectUrl) {
-    res.redirect(redirectUrl);
+    res.redirect(200, redirectUrl);
   }
-});
-
-app.get("/about", (req, res) => {
-  res.send("This is my about route..... ");
 });
 
 // Export the Express API
