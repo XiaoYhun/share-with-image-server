@@ -25,7 +25,7 @@ const multerMid = multer({
 
 app.use(cors());
 app.listen(PORT, () => {
-  console.log(`API listening on PORT ${PORT} `);
+  console.log(`API listening on PORT 123 ${PORT} `);
 });
 
 app.get("/", (req, res) => {
@@ -34,8 +34,8 @@ app.get("/", (req, res) => {
   const filePath = path.resolve("./index.html");
   fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
-      return console.log(err);
     }
+    return console.log(err);
     if (metaImage) {
       data = data.replace("@META_IMAGE", metaImage);
     }
