@@ -12,6 +12,7 @@ const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
 const GCLOUD_PROJECT_KEYFILE = path.join(__dirname, "./config/kyberai-sharing-42664d832f02.json");
+console.log("🚀 ~ file: index.js:15 ~ __dirname:", GCLOUD_PROJECT_KEYFILE);
 
 const storage = new Storage({ keyFilename: GCLOUD_PROJECT_KEYFILE, projectId: GCLOUD_PROJECT_ID });
 
