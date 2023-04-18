@@ -25,21 +25,20 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
+  console.log("🚀 ~ file: index.js:28 ~ app.get ~ req:", req.headers["user-agent"]);
   const metaImage = req.query.imageurl;
   const redirectUrl = req.query.redirecturl;
-  if (metaImage) {
-    const filePath = path.resolve("./index.html");
-    fs.readFile(filePath, "utf8", function (err, data) {
-      if (err) {
-        return console.log(err);
-      }
+  const filePath = path.resolve("./index.html");
+  fs.readFile(filePath, "utf8", function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    if (metaImage) {
       data = data.replace("@META_IMAGE", metaImage);
-      res.send(data);
-    });
-  }
-  if (redirectUrl) {
-    res.redirect(redirectUrl);
-  }
+    }
+    data = data.replace('"@REDIRECT_URL"', `"${redirectUrl}"` || undefined);
+    res.send(data);
+  });
 });
 
 app.disable("x-powered-by");
