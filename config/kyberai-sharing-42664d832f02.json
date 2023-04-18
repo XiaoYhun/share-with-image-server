@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "kyberai-sharing",
+  "private_key_id": "42664d832f0246d197cd20481fa0e849f7f3a51d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDBiG8H9cA5iW/D\nP0OA3k70fFH5zmkpPfAcvSDBwi26jResafRLjUd3n+WChqz6Sl40m8oT8tuy2mta\nmqS8plyYEov/FwVrneSPeOOWWi2Tsz2ckbq/4Y49U9+iXIKwe+dw0aOr6Fg6SG9H\nWQtd73w3HYZbNJPNO6NMAby7AyjwY4SJXjZN5sPnU02WerF5/SD3NZc9yvjOdPz+\nOxOuUoNKGGBGUZ2Z8fnX46GJB+MaS+f7ScNnXSGlrqJ30HEKlGqXKypZS85Q6rXE\nivCHTSFSA9E59Fu9WGEjXHwgitZqesfMlgYg6iL+56JjhuIkq6k3OMMPdYf3fuZM\ndyUtGT79AgMBAAECggEAH8OpWZibwrXMirLE/Q8/zT/kYohe2T6JvOXLzRF2WPKU\nap9/UbEwBDHRxSEenfv7x020lp6bMZlI2necRzxU4T7WDHm2UYn6PBQe4owNg/r8\nx0hh6uF165nrECZ36siDXZCC+RGq/XHrFb5HL9VBQXiOl0SjZ6F8tVpppBYqL34U\nRmXmy3ILVpNOdQqPNLUlCyZHYPnN/s4b2p4/0TAgYUI88NVKCQCyOU1WqMevgV00\njcU8RDQtU9vBk15F14cEIUUjwi2B7HoZkCacQnAMb0r55W3zoy84Jld8QXIdkCL4\nd7e/DLz3LfpwLgai8cMbzLl62sTR/+RmY82BCDpLMQKBgQD+ki7Sofc/HfyJBmIJ\npziKYZm5S1stZfIS8t2W6zbsOijB0kNIBEBWZN/RBUvnwt7YDRUHB+XrIBOZ7K19\nwa0rSfXk9DUwRWkZUyO6njxGz2Aq5ItqmEWOvVDtRGvMRJC9Jyn8/UMkByYF/kcC\ntjim8GSs4l5T+4tR94nUMYnlWQKBgQDCnooYxy2UyfFAAMBLNn3coaTNlCmJ9/8Y\nuMpG1XVlaD3Rz6SkwkntLixVjSOJ73bqzcKjzSKqDlgQHuZT7XsM+4WFw+AsZwPa\nb1QW+1MdVNPEmNZ0PdELN/dKV7EPyFhu8eihxzPbCy+SsrKZamDWIeifryCV6hGJ\nTscAwr4eRQKBgCJsZgR5flN8nI9y24Lup8ielgjmVbf31xoU2T31JIIhAy3iXtK4\nMHL+RP2gt7jpMvUIH9XJjZ+TwNLJnFQrAl2eLK//DcovOJ0CDwzHJON2W0yxhuCt\nIorAstbCr8j5ZJEPYLAjFxciGFQrJDMLrPF2BEcUfSjiFN7KmEqnQDxRAoGAa3wp\n4uNmPi2FywZfLWrr+kVgApYYlvVbcujj9lj/3EDFG7JlSQVw1MhSffFUNmMFt0pq\nfBLYWTlQ055tMN8QvavQI395uKwwSZyAwayOS73Es2iB0HMvl9WSAwIJbSEGDkgW\nZfrhndFAtfFxiB9jWgAiPMb45TL/+miCqd3kKE0CgYBD0zQvbmAotAmYMIhTYcJB\naMoOd12CT03rQSbuSf8kO3fqkHuMrb11mI9Idw4iC9AMH+YO01b1s+eqnt5iDzro\nNGixPC8PBm3JkyrF/ZzZOzeqeZ7Af5N54toH+F4TEJvu9XBbMJJH6Hi3X1fczGUz\nHhUoRwlpu6gDRBzFPzYuBw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "kyberaisharing@kyberai-sharing.iam.gserviceaccount.com",
+  "client_id": "105524800318119187083",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kyberaisharing%40kyberai-sharing.iam.gserviceaccount.com"
+}
