@@ -50,15 +50,19 @@ app.post("/upload", multerMid.single("file"), async (req, res, next) => {
     res.status(400).send("No file uploaded.");
     return;
   }
-  const base64EncodedString = req.body.file.replace(/^data:\w+\/\w+;base64,/, "");
-  const buffer = Buffer.from(base64EncodedString, "base64");
-  const fileName = uuidv4() + ".png";
-  const blob = bucket.file(fileName);
-  blob.save(buffer);
+  try {
+    const base64EncodedString = req.body.file.replace(/^data:\w+\/\w+;base64,/, "");
+    const buffer = Buffer.from(base64EncodedString, "base64");
+    const fileName = uuidv4() + ".png";
+    const blob = bucket.file(fileName);
+    blob.save(buffer);
 
-  const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${fileName}`);
+    const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${fileName}`);
 
-  res.status(200).send(publicUrl);
+    res.status(200).send(publicUrl);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Export the Express API
