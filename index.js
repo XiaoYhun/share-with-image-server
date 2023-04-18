@@ -5,15 +5,12 @@ const cors = require("cors");
 const app = express();
 const PORT = 4000;
 const multer = require("multer");
-const { Storage, File } = require("@google-cloud/storage");
+const { Storage } = require("@google-cloud/storage");
 const { format } = require("util");
-const GCLOUD_PROJECT_ID = "kyberai-sharing";
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-const GCLOUD_PROJECT_KEYFILE = path.join(__dirname, "/config/kyberai-sharing-42664d832f02.json");
-
-const storage = new Storage({ keyFilename: GCLOUD_PROJECT_KEYFILE, projectId: GCLOUD_PROJECT_ID });
+const storage = new Storage({ credentials: require("./config/kyberai-sharing-42664d832f02.json") });
 
 const bucket = storage.bucket("kyberai_sharing");
 
@@ -38,7 +35,7 @@ app.get("/", (req, res) => {
     if (metaImage) {
       data = data.replace("@META_IMAGE", metaImage);
     }
-    data = data.replace('"@REDIRECT_URL"', `"${redirectUrl}"` || "/");
+    data = data.replace('"@REDIRECT_URL"', `"${redirectUrl}"` || undefined);
     res.send(data);
   });
 });
@@ -50,7 +47,6 @@ app.post("/upload", multerMid.single("file"), async (req, res, next) => {
     res.status(400).send("No file uploaded.");
     return;
   }
-  console.log("🚀 ~ file: index.js:15 ~ __dirname:", GCLOUD_PROJECT_KEYFILE);
 
   try {
     const base64EncodedString = req.body.file.replace(/^data:\w+\/\w+;base64,/, "");
