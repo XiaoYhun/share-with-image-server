@@ -11,8 +11,7 @@ const GCLOUD_PROJECT_ID = "kyberai-sharing";
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-const GCLOUD_PROJECT_KEYFILE = path.join(__dirname, "./config/kyberai-sharing-42664d832f02.json");
-console.log("🚀 ~ file: index.js:15 ~ __dirname:", GCLOUD_PROJECT_KEYFILE);
+const GCLOUD_PROJECT_KEYFILE = path.join(__dirname, "/config/kyberai-sharing-42664d832f02.json");
 
 const storage = new Storage({ keyFilename: GCLOUD_PROJECT_KEYFILE, projectId: GCLOUD_PROJECT_ID });
 
@@ -39,7 +38,7 @@ app.get("/", (req, res) => {
     if (metaImage) {
       data = data.replace("@META_IMAGE", metaImage);
     }
-    data = data.replace('"@REDIRECT_URL"', `"${redirectUrl}"` || undefined);
+    data = data.replace('"@REDIRECT_URL"', `"${redirectUrl}"` || "/");
     res.send(data);
   });
 });
@@ -51,6 +50,8 @@ app.post("/upload", multerMid.single("file"), async (req, res, next) => {
     res.status(400).send("No file uploaded.");
     return;
   }
+  console.log("🚀 ~ file: index.js:15 ~ __dirname:", GCLOUD_PROJECT_KEYFILE);
+
   try {
     const base64EncodedString = req.body.file.replace(/^data:\w+\/\w+;base64,/, "");
     const buffer = Buffer.from(base64EncodedString, "base64");
