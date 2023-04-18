@@ -1,6 +1,7 @@
 // index.js
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 const app = express();
 const PORT = 4000;
 const multer = require("multer");
@@ -21,6 +22,7 @@ const multerMid = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+app.use(cors());
 app.listen(PORT, () => {
   console.log(`API listening on PORT ${PORT} `);
 });
