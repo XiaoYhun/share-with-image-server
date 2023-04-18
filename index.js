@@ -4,10 +4,11 @@ const path = require("path");
 const app = express();
 const PORT = 4000;
 const multer = require("multer");
-const { Storage } = require("@google-cloud/storage");
+const { Storage, File } = require("@google-cloud/storage");
 const { format } = require("util");
 const GCLOUD_PROJECT_ID = "kyberai-sharing";
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
 
 const GCLOUD_PROJECT_KEYFILE = path.join(__dirname, "./config/kyberai-sharing-42664d832f02.json");
 
@@ -25,7 +26,6 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  console.log("🚀 ~ file: index.js:28 ~ app.get ~ req:", req.headers["user-agent"]);
   const metaImage = req.query.imageurl;
   const redirectUrl = req.query.redirecturl;
   const filePath = path.resolve("./index.html");
@@ -43,27 +43,20 @@ app.get("/", (req, res) => {
 
 app.disable("x-powered-by");
 
-app.post("/upload", multerMid.single("file"), (req, res, next) => {
-  if (!req.file) {
+app.post("/upload", multerMid.single("file"), async (req, res, next) => {
+  if (!req.body.file) {
     res.status(400).send("No file uploaded.");
     return;
   }
+  const base64EncodedString = req.body.file.replace(/^data:\w+\/\w+;base64,/, "");
+  const buffer = Buffer.from(base64EncodedString, "base64");
+  const fileName = uuidv4() + ".png";
+  const blob = bucket.file(fileName);
+  blob.save(buffer);
 
-  // Create a new blob in the bucket and upload the file data.
-  const blob = bucket.file(req.file.originalname);
-  const blobStream = blob.createWriteStream();
+  const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${fileName}`);
 
-  blobStream.on("error", (err) => {
-    next(err);
-  });
-
-  blobStream.on("finish", () => {
-    // The public URL can be used to directly access the file via HTTP.
-    const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${blob.name}`);
-    res.status(200).send(publicUrl);
-  });
-
-  blobStream.end(req.file.buffer);
+  res.status(200).send(publicUrl);
 });
 
 // Export the Express API
