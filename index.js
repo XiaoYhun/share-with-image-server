@@ -53,7 +53,7 @@ app.post("/upload", multerMid.single("file"), async (req, res, next) => {
     const buffer = Buffer.from(base64EncodedString, "base64");
     const fileName = uuidv4() + ".png";
     const blob = bucket.file(fileName);
-    blob.save(buffer);
+    await blob.save(buffer);
 
     const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${fileName}`);
 
