@@ -5,8 +5,9 @@ const app = express();
 const PORT = 4000;
 const multer = require("multer");
 const { Storage } = require("@google-cloud/storage");
-
+const { format } = require("util");
 const GCLOUD_PROJECT_ID = "kyberai-sharing";
+const fs = require("fs");
 
 const GCLOUD_PROJECT_KEYFILE = path.join(__dirname, "./config/kyberai-sharing-42664d832f02.json");
 
@@ -26,11 +27,16 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
   const metaImage = req.query.imageurl;
   const redirectUrl = req.query.redirecturl;
-  const filePath = path.resolve("./index.html");
   if (metaImage) {
-    filePath.replace("@META_IMAGE", metaImage);
+    const filePath = path.resolve("./index.html");
+    fs.readFile(filePath, "utf8", function (err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      data = data.replace("@META_IMAGE", metaImage);
+      res.send(data);
+    });
   }
-  res.sendFile(filePath);
   if (redirectUrl) {
     res.redirect(redirectUrl);
   }
