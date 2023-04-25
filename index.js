@@ -10,9 +10,9 @@ const { format } = require("util");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-const storage = new Storage({ credentials: require("./config/kyberai-sharing-42664d832f02.json") });
+const storage = new Storage({ credentials: require("./config/kyber-image-sharing-fc9d5aa59ef7.json") });
 
-const bucket = storage.bucket("kyberai_sharing");
+const bucket = storage.bucket("image_sharing");
 
 const multerMid = multer({
   storage: multer.memoryStorage(),
@@ -21,7 +21,7 @@ const multerMid = multer({
 
 app.use(cors());
 app.listen(PORT, () => {
-  console.log(`API listening on PORT 123 ${PORT} `);
+  console.log(`API listening on PORT ${PORT} `);
 });
 
 app.get("/", (req, res) => {
